@@ -1,0 +1,11 @@
+# Local environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Dependency directories
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
