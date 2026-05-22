@@ -1,0 +1,3430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchio — Your Branded Restaurant Ordering Website (0% Commission)</title>
+    <meta name="description"
+        content="Stop giving 30% of your hard-earned revenue to aggregators. Kitchio builds your restaurant a branded ordering website with automatic delivery fulfillment through our integrated delivery partner network.">
+
+    <!-- Google Fonts: Plus Jakarta Sans (Headings) & DM Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           1. CORE DESIGN SYSTEM & VARIABLES
+           ========================================== */
+        :root {
+            --bg: #0C0A09;
+            /* Deep warm obsidian */
+            --bg-secondary: #110F0E;
+            /* Subtle section break */
+            --card-bg: #151413;
+            /* Sleek card base */
+            --card-hover: #1D1C1B;
+            /* Card hover slate */
+            --accent: #D76B46;
+            /* Sophisticated warm terracotta */
+            --accent-hover: #E37E5A;
+            /* Soft warm terracotta hover */
+            --accent-glow: rgba(215, 107, 70, 0.08);
+            /* Softened glow opacity */
+            --text: #F6F4F2;
+            /* Beautiful soft cream */
+            --text-muted: #948F8B;
+            /* Refined warm gray */
+            --border: rgba(255, 255, 255, 0.03);
+            --border-hover: rgba(215, 107, 70, 0.15);
+            --red: #E25A53;
+            /* Softer warning red */
+            --red-bg: rgba(226, 90, 83, 0.08);
+            --green: #45BF6B;
+            /* Softer premium green */
+            --container-width: 1200px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 1.1 Grain Texture Overlay (Resolution Independent) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* 1.2 Layout & Common Elements */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: #FFF;
+        }
+
+        section {
+            position: relative;
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* 1.3 Premium Scroll Fade Up Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* 1.4 Styled Buttons & Badges */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            outline: none;
+            border: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #FFF;
+            box-shadow: 0 4px 20px rgba(215, 107, 70, 0.12);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(215, 107, 70, 0.18);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #FFF;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background-color: rgba(215, 107, 70, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .cta-subtext {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(215, 107, 70, 0.08);
+            border: 1px solid rgba(215, 107, 70, 0.15);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            letter-spacing: 0.02em;
+        }
+
+        /* 1.5 Custom Logo Styling */
+        .logo-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: #FFF;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-dot-i {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-i-dot {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        /* ==========================================
+           2. HEADER & NAVIGATION (Sticky Nav)
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+        }
+
+        header.scrolled {
+            padding: 14px 0;
+            background: rgba(12, 10, 9, 0.85);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-link:hover {
+            color: #FFF;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+            flex-direction: column;
+            gap: 6px;
+            width: 24px;
+            height: 24px;
+            justify-content: center;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #FFF;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 2px;
+        }
+
+        /* Open state for hamburger */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: var(--accent);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: var(--accent);
+        }
+
+        /* Mobile Drawer */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg);
+            z-index: 999;
+            padding: 120px 40px 40px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav .nav-link {
+            font-size: 24px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            color: #FFF;
+        }
+
+        .mobile-nav .btn {
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        #hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 3.1 Hero glow centered behind typography */
+        .hero-glow {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            max-width: 550px;
+            max-height: 550px;
+            background: radial-gradient(circle, rgba(215, 107, 70, 0.08) 0%, rgba(215, 107, 70, 0.02) 50%, rgba(12, 10, 9, 0) 70%);
+            filter: blur(50px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-headline {
+            font-size: clamp(38px, 6vw, 68px);
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            color: #FFF;
+            text-wrap: balance;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 19px);
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .hero-ctas-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ==========================================
+           4. PAIN STRIP SECTION
+           ========================================== */
+        #pain-strip {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pain-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .pain-text {
+            font-size: clamp(20px, 2.5vw, 24px);
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .pain-text span {
+            color: #FFF;
+            font-weight: 600;
+        }
+
+        .pain-text .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .pain-platforms {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .platform-card {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            padding: 24px 16px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 140px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .platform-card:hover {
+            border-color: rgba(255, 59, 48, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Platform Brand Colors Muted */
+        .platform-ubereats {
+            border-color: rgba(16, 143, 86, 0.15);
+        }
+
+        .platform-justeat {
+            border-color: rgba(243, 104, 5, 0.15);
+        }
+
+        .platform-deliveroo {
+            border-color: rgba(0, 205, 188, 0.15);
+        }
+
+        .platform-logo-mock {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #FFF;
+            letter-spacing: -0.5px;
+        }
+
+        .platform-ubereats .platform-logo-mock {
+            color: #108F56;
+        }
+
+        .platform-justeat .platform-logo-mock {
+            color: #F36805;
+        }
+
+        .platform-deliveroo .platform-logo-mock {
+            color: #00CDBC;
+        }
+
+        /* Diagonal Cross Line */
+        .cross-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .cross-line line {
+            stroke: var(--red);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            opacity: 0.85;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            transition: stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+        }
+
+        .visible .cross-line line {
+            stroke-dashoffset: 0;
+        }
+
+        .commission-badge {
+            background-color: var(--red);
+            color: #FFF;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);
+            transform: rotate(-3deg);
+            z-index: 5;
+        }
+
+        /* ==========================================
+           5. STATS BAR SECTION
+           ========================================== */
+        #stats-bar {
+            padding: 60px 0;
+            background-color: var(--bg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .stat-item {
+            text-align: left;
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .stat-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(32px, 4vw, 48px);
+            color: #FFF;
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        /* ==========================================
+           5.5 HIGH-CONVERTING AGGREGATORS VS KITCHIO COMPARISON
+           ========================================== */
+        #comparison {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comp-table-wrapper {
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .comp-table th,
+        .comp-table td {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+        }
+
+        .comp-table th {
+            background-color: var(--card-bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            color: #FFF;
+        }
+
+        .comp-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comp-metric {
+            font-weight: 600;
+            color: #FFF;
+            width: 30%;
+        }
+
+        .comp-agg {
+            color: var(--text-muted);
+            width: 35%;
+        }
+
+        .comp-kitchio {
+            background-color: rgba(215, 107, 70, 0.02);
+            color: #FFF;
+            font-weight: 400;
+            width: 35%;
+        }
+
+        .icon-cross {
+            color: var(--red);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .icon-check {
+            color: var(--green);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           6. FEATURES GRID SECTION (16 Feature Cards)
+           ========================================== */
+        #features {
+            background-color: var(--bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 64px auto;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 44px);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px 24px;
+            border-radius: 16px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-hover);
+            background-color: var(--card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .feature-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(215, 107, 70, 0.06);
+            border: 1px solid rgba(215, 107, 70, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .feature-card:hover .feature-icon-wrapper {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        /* ==========================================
+           7. HOW IT WORKS SECTION (With Linked Simulation)
+           ========================================== */
+        #how-it-works {
+            background-color: var(--bg);
+        }
+
+        .how-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        /* Left Side Steps */
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 24px;
+            position: relative;
+        }
+
+        .step-item::after {
+            content: "";
+            position: absolute;
+            top: 48px;
+            left: 20px;
+            width: 1px;
+            height: calc(100% + 16px);
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .step-item:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            z-index: 2;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .step-content h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #FFF;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Right Side Live Linked Device Mockup */
+        .device-mockup-block {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        /* Terminal Tab Controls */
+        .terminal-tabs {
+            display: flex;
+            background-color: var(--card-bg);
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            align-self: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 8px 18px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent);
+            color: #FFF;
+        }
+
+        /* Views Wrapper */
+        .view-panel-container {
+            position: relative;
+            width: 100%;
+            min-height: 480px;
+        }
+
+        .view-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.98);
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            z-index: 1;
+        }
+
+        .view-panel.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            z-index: 5;
+            position: relative;
+        }
+
+        /* View 1: Customer Web App Mockup (Phone Style) */
+        .phone-frame {
+            max-width: 330px;
+            margin: 0 auto;
+            background-color: var(--bg);
+            border: 10px solid var(--card-hover);
+            border-radius: 36px;
+            height: 480px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .phone-header {
+            background-color: var(--card-bg);
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #FFF;
+        }
+
+        .phone-content {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            gap: 12px;
+            background-color: var(--bg-secondary);
+        }
+
+        .food-item-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .food-pic-placeholder {
+            width: 54px;
+            height: 54px;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .food-details {
+            flex-grow: 1;
+        }
+
+        .food-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #FFF;
+            margin-bottom: 2px;
+        }
+
+        .food-price {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .phone-cart-summary {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+        }
+
+        .cart-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .cart-row.total {
+            color: #FFF;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .checkout-btn {
+            background-color: var(--accent);
+            color: #FFF;
+            font-size: 12.5px;
+            font-weight: 600;
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* View 2: Live Mock Restaurant Dashboard */
+        .dashboard-container {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+            width: 100%;
+        }
+
+        .dashboard-header {
+            background-color: var(--card-bg);
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dashboard-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .control-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .control-dot.red {
+            background-color: var(--red);
+        }
+
+        .control-dot.yellow {
+            background-color: #FFCC00;
+        }
+
+        .control-dot.green {
+            background-color: var(--green);
+        }
+
+        .dashboard-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: pulse 1.8s infinite;
+        }
+
+        .savings-counter-pill {
+            background-color: rgba(69, 191, 107, 0.08);
+            border: 1px solid rgba(69, 191, 107, 0.15);
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dashboard-content {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            min-height: 400px;
+        }
+
+        .dashboard-sub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+        }
+
+        .order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Order Card */
+        .order-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            transform-origin: top;
+        }
+
+        .order-card.new-order-toast {
+            animation: slideInOrder 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .order-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-id {
+            font-weight: 600;
+            font-size: 13px;
+            color: #FFF;
+        }
+
+        .order-time {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .order-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .order-items {
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        .order-price-info {
+            text-align: right;
+        }
+
+        .order-total {
+            font-weight: 600;
+            font-size: 14px;
+            color: #FFF;
+        }
+
+        .order-saved-tag {
+            font-size: 10px;
+            color: var(--green);
+            background: rgba(52, 199, 89, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Delivery Tracker Status */
+        .delivery-tracker {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+
+        .delivery-courier {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+        }
+
+        .delivery-status {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot-pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-dot-pulse.delivering {
+            background-color: #00CDBC;
+        }
+
+        .status-dot-pulse.completed {
+            background-color: var(--green);
+            animation: none;
+        }
+
+        /* Simulator Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes slideInOrder {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+                background-color: rgba(215, 107, 70, 0.1);
+                border-color: rgba(215, 107, 70, 0.3);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                background-color: var(--card-bg);
+                border-color: rgba(255, 255, 255, 0.03);
+            }
+        }
+
+        /* ==========================================
+           7.5 SOCIAL PROOF (Testimonials Panel)
+           ========================================== */
+        #testimonials {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            padding: 36px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stars-row {
+            color: var(--accent);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-body {
+            font-size: 14.5px;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-pic {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .author-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFF;
+        }
+
+        .author-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           8. PRICING SECTION
+           ========================================== */
+        #pricing {
+            background-color: var(--bg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 48px 40px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        /* Most Popular Plan Styling */
+        .pricing-card.popular {
+            border: 1.5px solid var(--accent);
+            box-shadow: 0 15px 40px var(--accent-glow);
+            background-color: var(--card-hover);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent);
+            color: #FFF;
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 10px rgba(255, 92, 26, 0.3);
+        }
+
+        .pricing-header h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .pricing-header p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .pricing-price {
+            margin-bottom: 32px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .price-currency {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFF;
+        }
+
+        .price-amount {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 52px;
+            font-weight: 800;
+            color: #FFF;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-left: 6px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+            margin-top: 10px;
+        }
+
+        .pricing-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .pricing-feature-item svg {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-card .btn {
+            margin-top: auto;
+        }
+
+        /* ==========================================
+           8.5 DUST-SETTLED FAQs SECTION (Objection Handling)
+           ========================================== */
+        #faqs {
+            background-color: var(--bg);
+        }
+
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: #FFF;
+            user-select: none;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin-top 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 16px;
+        }
+
+        .faq-icon {
+            font-size: 18px;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* ==========================================
+           8.9 THE HIDDEN FEES DECODER
+           ========================================== */
+        #decoder {
+            background-color: var(--bg);
+            padding: 100px 0;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .decoder-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .decoder-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .decoder-tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .decoder-tab-btn:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+        }
+
+        .decoder-tab-btn.active[data-platform="ubereats"] {
+            background-color: #000;
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #FFF;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .decoder-tab-btn.active[data-platform="deliveroo"] {
+            background-color: #00CDBC;
+            border-color: #00CDBC;
+            color: #FFF;
+            box-shadow: 0 4px 20px rgba(0, 205, 188, 0.2);
+        }
+
+        .decoder-tab-btn.active[data-platform="justeat"] {
+            background-color: #F36805;
+            border-color: #F36805;
+            color: #FFF;
+            box-shadow: 0 4px 20px rgba(243, 104, 5, 0.2);
+        }
+
+        .decoder-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .decoder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .decoder-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .decoder-column {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .decoder-column.aggregator {
+            border-top: 4px solid var(--red);
+        }
+
+        .decoder-column.kitchio {
+            border-top: 4px solid var(--green);
+            background: linear-gradient(180deg, var(--card-bg) 0%, rgba(69, 191, 107, 0.02) 100%);
+        }
+
+        .col-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .col-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .col-badge {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .aggregator .col-badge {
+            background-color: var(--red-bg);
+            color: var(--red);
+        }
+
+        .kitchio .col-badge {
+            background-color: rgba(69, 191, 107, 0.1);
+            color: var(--green);
+        }
+
+        .fee-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .fee-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .fee-label-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fee-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .fee-sublabel {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .fee-val {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .aggregator .fee-val {
+            color: var(--red);
+        }
+
+        .kitchio .fee-val {
+            color: var(--green);
+        }
+
+        .decoder-summary-bar {
+            grid-column: 1 / -1;
+            background: linear-gradient(90deg, #1A1412 0%, var(--card-bg) 100%);
+            border: 1px solid var(--border-hover);
+            border-radius: 16px;
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .decoder-summary-bar {
+                flex-direction: column;
+                text-align: center;
+                padding: 24px;
+            }
+        }
+
+        .summary-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .summary-val {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFF;
+        }
+
+        .summary-saving-highlight {
+            background-color: rgba(69, 191, 107, 0.1);
+            border: 1px solid rgba(69, 191, 107, 0.2);
+            color: var(--green);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 15px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* ==========================================
+           9. DEMO / CONTACT FORM SECTION
+           ========================================== */
+        #demo {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .demo-container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .demo-form {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            padding: 48px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            color: #FFF;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all var(--transition-speed) ease;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            background-color: var(--card-hover);
+            box-shadow: 0 0 0 2px rgba(215, 107, 70, 0.1);
+        }
+
+        /* Styled radio group for locations */
+        .locations-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .location-option {
+            position: relative;
+        }
+
+        .location-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .location-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text-muted);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            user-select: none;
+        }
+
+        .location-option input[type="radio"]:checked+.location-label {
+            border-color: var(--accent);
+            background-color: rgba(215, 107, 70, 0.06);
+            color: #FFF;
+        }
+
+        .location-option input[type="radio"]:focus+.location-label {
+            box-shadow: 0 0 0 2px rgba(215, 107, 70, 0.12);
+        }
+
+        /* Form validation states */
+        .form-group.has-error .form-control {
+            border-color: var(--red);
+        }
+
+        .error-message {
+            color: var(--red);
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+        }
+
+        /* Thank You Success Panel */
+        .thank-you-panel {
+            text-align: center;
+            padding: 40px 10px;
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .thank-you-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .thank-you-panel h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .thank-you-panel p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================
+           10. FOOTER SECTION
+           ========================================== */
+        footer {
+            background-color: var(--bg);
+            padding: 80px 0 40px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-brand p {
+            max-width: 320px;
+            line-height: 1.6;
+        }
+
+        .footer-links-col {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-end;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer-link:hover {
+            color: #FFF;
+        }
+
+        .footer-email {
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFF;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer-email:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        /* ==========================================
+           11. RESPONSIVE DESIGN (Media Queries)
+           ========================================== */
+        @media (max-width: 1200px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            :root {
+                --container-width: 960px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .pain-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .how-container {
+                gap: 40px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 40px auto 0 auto;
+                gap: 32px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .pricing-card {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-menu,
+            .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            header {
+                padding: 16px 0;
+            }
+
+            header.scrolled {
+                padding: 12px 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 440px;
+                margin: 0 auto;
+                gap: 32px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .demo-form {
+                padding: 32px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-links-col {
+                align-items: flex-start;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pain-platforms {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-card {
+                height: 110px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .locations-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================
+       1. STICKY NAVIGATION HEADER
+       ========================================== -->
+    <header id="main-header">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a href="#hero" class="logo-link">
+                <span class="logo-text">Kitch·<span class="logo-dot-i">ı<span class="logo-i-dot"></span></span>o</span>
+            </a>
+
+            <!-- Central Nav Links (Desktop) -->
+            <nav class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#demo" class="nav-link">Get Started</a>
+            </nav>
+
+            <!-- Nav CTA (Desktop) -->
+            <div class="nav-cta">
+                <a href="#demo" class="btn btn-secondary">Book a Demo</a>
+            </div>
+
+            <!-- Hamburger Button (Mobile) -->
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav" id="mobile-drawer">
+        <a href="#features" class="nav-link mobile-link">Features</a>
+        <a href="#how-it-works" class="nav-link mobile-link">How It Works</a>
+        <a href="#pricing" class="nav-link mobile-link">Pricing</a>
+        <a href="#demo" class="nav-link mobile-link">Get Started</a>
+        <a href="#demo" class="btn btn-primary mobile-link">Book a Demo</a>
+    </div>
+
+    <!-- ==========================================
+       2. HERO SECTION
+       ========================================== -->
+    <section id="hero">
+        <div class="hero-glow"></div>
+        <div class="container hero-content">
+            <!-- Badge Pill -->
+            <div class="fade-up">
+                <span class="badge">The commission-free alternative</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="hero-headline fade-up delay-1">
+                Your kitchen.<br>Your customers. <span style="color: var(--accent);">Your money.</span>
+            </h1>
+
+            <!-- Subtext -->
+            <p class="hero-sub fade-up delay-2">
+                Kitchio builds your restaurant a fully branded ordering site and handles delivery through our trusted
+                delivery partner network. Stop handing 30% of every order to middleman apps.
+            </p>
+
+            <!-- CTAs -->
+            <div class="hero-ctas fade-up delay-3">
+                <div class="hero-ctas-buttons">
+                    <a href="#demo" class="btn btn-primary">Get Your Free Site</a>
+                    <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+                </div>
+                <span class="cta-subtext">No setup fees • Built &amp; launched for you in 48 hours • Cancel
+                    anytime</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       3. PAIN STRIP SECTION
+       ========================================== -->
+    <section id="pain-strip" class="fade-up">
+        <div class="container pain-container">
+            <div class="pain-text">
+                Right now, Uber Eats, Just Eat and Deliveroo are taking <span>up to 36%</span> of every order you
+                receive. <span class="highlight">That's not a delivery fee</span> — that's your staff wages, your rent,
+                your profit.
+            </div>
+
+            <div class="pain-platforms">
+                <!-- Aggregator Card 1 -->
+                <div class="platform-card platform-ubereats">
+                    <svg class="cross-line" viewBox="0 0 150 140">
+                        <line x1="10" y1="130" x2="140" y2="10" />
+                    </svg>
+                    <div class="platform-logo-mock">Uber Eats</div>
+                    <span class="commission-badge">30% CUT</span>
+                </div>
+
+                <!-- Aggregator Card 2 -->
+                <div class="platform-card platform-justeat">
+                    <svg class="cross-line" viewBox="0 0 150 140">
+                        <line x1="10" y1="130" x2="140" y2="10" />
+                    </svg>
+                    <div class="platform-logo-mock">JUST EAT</div>
+                    <span class="commission-badge">36% CUT</span>
+                </div>
+
+                <!-- Aggregator Card 3 -->
+                <div class="platform-card platform-deliveroo">
+                    <svg class="cross-line" viewBox="0 0 150 140">
+                        <line x1="10" y1="130" x2="140" y2="10" />
+                    </svg>
+                    <div class="platform-logo-mock">deliveroo</div>
+                    <span class="commission-badge">35% CUT</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       4. STATS BAR SECTION
+       ========================================== -->
+    <section id="stats-bar" class="fade-up">
+        <div class="container">
+            <div class="stats-grid">
+                <!-- Stat 1 -->
+                <div class="stat-item">
+                    <div class="stat-number">0%</div>
+                    <div class="stat-label">Commission on every order</div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="stat-item">
+                    <div class="stat-number">48h</div>
+                    <div class="stat-label">Average time to go live</div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="stat-item">
+                    <div class="stat-number"
+                        style="font-size: clamp(22px, 3vw, 32px); margin-top: 6px; margin-bottom: 14px;">Integrated
+                    </div>
+                    <div class="stat-label">Delivery partners handled</div>
+                </div>
+
+                <!-- Stat 4 -->
+                <div class="stat-item">
+                    <div class="stat-number">£0</div>
+                    <div class="stat-label">To get started today</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       4.5 AGGREGATORS VS KITCHIO COMPARISON
+       ========================================== -->
+    <section id="comparison" class="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why restaurants are leaving the apps</h2>
+                <p class="section-subtitle">A side-by-side breakdown of the aggregator tax versus ordering freedom.</p>
+            </div>
+
+            <div class="comp-table-wrapper">
+                <table class="comp-table">
+                    <thead>
+                        <tr>
+                            <th class="comp-metric">Feature</th>
+                            <th class="comp-agg">Aggregator Apps</th>
+                            <th class="comp-kitchio">Kitchio Direct</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="comp-metric">Commission Fee</td>
+                            <td class="comp-agg"><span class="icon-cross">❌</span>Up to 36% per order</td>
+                            <td class="comp-kitchio"><span class="icon-check">✓</span>0% (Keep 100% of sales)</td>
+                        </tr>
+                        <tr>
+                            <td class="comp-metric">Customer Data</td>
+                            <td class="comp-agg"><span class="icon-cross">❌</span>Aggregators hide it from you</td>
+                            <td class="comp-kitchio"><span class="icon-check">✓</span>You own 100% of guest emails</td>
+                        </tr>
+                        <tr>
+                            <td class="comp-metric">Payout Speed</td>
+                            <td class="comp-agg"><span class="icon-cross">❌</span>Weekly delayed payouts</td>
+                            <td class="comp-kitchio"><span class="icon-check">✓</span>Instant payouts straight to bank
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="comp-metric">Menu Control</td>
+                            <td class="comp-agg"><span class="icon-cross">❌</span>Slow approvals, static listing</td>
+                            <td class="comp-kitchio"><span class="icon-check">✓</span>Edit instantly in 1 click</td>
+                        </tr>
+                        <tr>
+                            <td class="comp-metric">Brand Visibility</td>
+                            <td class="comp-agg"><span class="icon-cross">❌</span>Listed next to 50 competitors</td>
+                            <td class="comp-kitchio"><span class="icon-check">✓</span>Your exclusive branded site</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       6. FEATURES GRID SECTION (16 Feature Cards)
+       ========================================== -->
+    <section id="features">
+        <div class="container">
+            <!-- Features Header -->
+            <div class="section-header fade-up">
+                <h2 class="section-title">Everything you need to bypass the aggregators</h2>
+                <p class="section-subtitle">Take orders directly, keep the profits, and deliver instantly — all managed
+                    in one high-tech restaurant suite.</p>
+            </div>
+
+            <!-- 4x4 Grid (16 Cards) -->
+            <div class="features-grid">
+                <!-- Feature 1: Zero Commission -->
+                <div class="feature-card fade-up delay-1">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3>Zero Commission</h3>
+                    <p>Every penny from every order goes straight to you. No cuts, no surprises, no hidden middleman
+                        fees.</p>
+                </div>
+
+                <!-- Feature 2: Your Brand, Your Domain -->
+                <div class="feature-card fade-up delay-2">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                    </div>
+                    <h3>Your Brand &amp; Domain</h3>
+                    <p>Customers see your logo, your colors, and your domain. Build actual customer loyalty under your
+                        own name.</p>
+                </div>
+
+                <!-- Feature 3: Automated Partner Delivery -->
+                <div class="feature-card fade-up delay-3">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        </svg>
+                    </div>
+                    <h3>Partner Delivery</h3>
+                    <p>When an order lands, a professional courier is dispatched automatically from our delivery partner
+                        network.</p>
+                </div>
+
+                <!-- Feature 4: Direct Instant Payouts -->
+                <div class="feature-card fade-up delay-4">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                    </div>
+                    <h3>Instant Payouts</h3>
+                    <p>Fast, guest-friendly web checkout. Funds hit your bank account directly as soon as they
+                        purchase—no aggregator delay.</p>
+                </div>
+
+                <!-- Feature 5: Live Order Dashboard -->
+                <div class="feature-card fade-up delay-1">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10" />
+                        </svg>
+                    </div>
+                    <h3>Live Order Manager</h3>
+                    <p>Watch orders arrive, accept with one tap, manage live items, and monitor delivery riders in
+                        real-time.</p>
+                </div>
+
+                <!-- Feature 6: Up & Running in 48 Hours -->
+                <div class="feature-card fade-up delay-2">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3>Go Live in 48h</h3>
+                    <p>We do the heavy lifting. We build your site, upload your menu, map delivery zones, and get you
+                        live in 2 days.</p>
+                </div>
+
+                <!-- Feature 7: AI-Powered Upselling -->
+                <div class="feature-card fade-up delay-3">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 113.536 0V21h-2v-3.07a5.002 5.002 0 01-1.536-.93z" />
+                        </svg>
+                    </div>
+                    <h3>AI-Powered Upselling</h3>
+                    <p>Smart, context-aware item recommendations at guest checkout that increase average ticket value by
+                        22%.</p>
+                </div>
+
+                <!-- Feature 8: Interactive QR Code Menus -->
+                <div class="feature-card fade-up delay-4">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 4v1m6 11h2m-6 0h-2v4m0-4v-4m-6 4H4m6-6h2m6-6H8a4 4 0 00-4 4v8a4 4 0 004 4h8a4 4 0 004-4V8a4 4 0 00-4-4z" />
+                        </svg>
+                    </div>
+                    <h3>QR Code Table Ordering</h3>
+                    <p>Generate branded QR codes for tables or window displays so in-house guests scan, order, and pay
+                        instantly.</p>
+                </div>
+
+                <!-- Feature 9: Geo-Fenced Delivery Zones -->
+                <div class="feature-card fade-up delay-1">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                    </div>
+                    <h3>Geo-Fenced Boundaries</h3>
+                    <p>Draw highly custom custom-shaped boundaries on a map to define your own delivery ranges and
+                        pricing structures.</p>
+                </div>
+
+                <!-- Feature 10: White-Labeled SMS Alerts -->
+                <div class="feature-card fade-up delay-2">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                    </div>
+                    <h3>White-Labeled SMS</h3>
+                    <p>Automated, elegant text notifications sent to customers updating order progress and live partner
+                        rider maps.</p>
+                </div>
+
+                <!-- Feature 11: Google Maps Autocomplete -->
+                <div class="feature-card fade-up delay-3">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        </svg>
+                    </div>
+                    <h3>Address Autocomplete</h3>
+                    <p>Flawless, ultra-fast guest checkout with precise address validation powered by global mapping
+                        technology.</p>
+                </div>
+
+                <!-- Feature 12: Scheduled Pre-Ordering -->
+                <div class="feature-card fade-up delay-4">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3>Scheduled Pre-Ordering</h3>
+                    <p>Allows loyal guests to place and schedule their orders hours or days ahead of time for meetings
+                        or events.</p>
+                </div>
+
+                <!-- Feature 13: Custom Loyalty & Rewards -->
+                <div class="feature-card fade-up delay-1">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                        </svg>
+                    </div>
+                    <h3>Branded Loyalty Engine</h3>
+                    <p>Build your own custom digital stamp cards, coupons, percentage rewards, and happy hour schedules
+                        in seconds.</p>
+                </div>
+
+                <!-- Feature 14: Automated Re-engagement -->
+                <div class="feature-card fade-up delay-2">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3>Auto Guest Re-engagement</h3>
+                    <p>Auto-sends smart promotional emails to historical guests who haven't ordered in 30 days to drive
+                        repeat volume.</p>
+                </div>
+
+                <!-- Feature 15: Enterprise Menu Syncing -->
+                <div class="feature-card fade-up delay-3">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.2" />
+                        </svg>
+                    </div>
+                    <h3>Multi-Location Sync</h3>
+                    <p>Push menu revisions, pricing layers, or temporary 86'd out-of-stock items across all locations in
+                        one click.</p>
+                </div>
+
+                <!-- Feature 16: Built-in SEO & Google Maps Ranking -->
+                <div class="feature-card fade-up delay-4">
+                    <div class="feature-icon-wrapper">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <h3>Local SEO Ranking</h3>
+                    <p>Optimized, fast pages built on clean architectures that naturally rank high on search queries in
+                        your area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       7. HOW IT WORKS SECTION (With Linked Simulation)
+       ========================================== -->
+    <section id="how-it-works">
+        <div class="container how-container">
+            <!-- Centered Onboarding Steps -->
+            <div class="fade-up"
+                style="display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center;">
+                <div class="badge" style="margin-bottom: 16px;">Zero Friction Onboarding</div>
+                <h2 class="section-title" style="margin-bottom: 40px; text-align: center;">From demo to first order in 3
+                    simple steps</h2>
+
+                <div class="steps-list" style="text-align: left; max-width: 640px; width: 100%;">
+                    <!-- Step 1 -->
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Book a Free Demo</h3>
+                            <p>Show us your current setup. We'll show you exactly how a custom Kitchio page looks for
+                                your restaurant and compute your exact monthly fee savings.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>We Build It For You</h3>
+                            <p>Send us your logo and menu. We'll build the branded system, link instant payout gateways,
+                                setup custom delivery zones, and handle domain configuration.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Keep 100% of the Money</h3>
+                            <p>Customers order on your own domain. Payment hits your bank instantly, our delivery
+                                partner sends a courier, and you save up to 36% on commission fees.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       7.5 SOCIAL PROOF (Testimonials Panel)
+       ========================================== -->
+    <section id="testimonials" class="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Trusted by independent kitchens</h2>
+                <p class="section-subtitle">Read how local restaurant owners took back control of their delivery
+                    profits.</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <!-- Card 1 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="stars-row">★★★★★</div>
+                        <p class="testimonial-body">"Before Kitchio, our takeaway orders were barely breaking even
+                            because of the aggregator cuts. Since going direct, we've added over £3,400 a month to our
+                            bottom line. The setup took less than 2 days."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-pic">🍕</div>
+                        <div class="author-info">
+                            <h4>Chef Antonio</h4>
+                            <p>Owner, Pierre's Pizza Parlour</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="stars-row">★★★★★</div>
+                        <p class="testimonial-body">"My customers love the branded interface far more than the standard
+                            aggregator templates. Dispatching drivers is 100% automated and hands-off. It has completely
+                            changed our business."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-pic">🍔</div>
+                        <div class="author-info">
+                            <h4>Sarah L.</h4>
+                            <p>Founder, The Burger Box</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="stars-row">★★★★★</div>
+                        <p class="testimonial-body">"I was skeptical about how delivery would be handled. But the
+                            partner driver network is absolutely stellar. couriers arrive within minutes of food
+                            finishing prep, and the payouts hit my bank daily."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-pic">🍜</div>
+                        <div class="author-info">
+                            <h4>Jin-Woo H.</h4>
+                            <p>General Manager, Wok &amp; Roll</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       8. PRICING SECTION
+       ========================================== -->
+    <section id="pricing">
+        <div class="container">
+            <!-- Header -->
+            <div class="section-header fade-up">
+                <h2 class="section-title">Fair pricing that helps you scale</h2>
+                <p class="section-subtitle">No long-term commitments. Choose a plan that matches your order volume and
+                    restaurant size.</p>
+            </div>
+
+            <!-- Grid -->
+            <div class="pricing-grid">
+                <!-- Starter Plan -->
+                <div class="pricing-card fade-up delay-1">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <p>Perfect for trying out Kitchio alongside food apps.</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-currency">£</span>
+                        <span class="price-amount">0</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Your branded ordering site
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Up to 50 orders/month
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Partner delivery integration
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Direct secure payments
+                        </li>
+                    </ul>
+                    <a href="#demo" class="btn btn-secondary">Get Started</a>
+                </div>
+
+                <!-- Growth Plan (Popular) -->
+                <div class="pricing-card popular fade-up delay-2">
+                    <span class="popular-badge">Most Popular</span>
+                    <div class="pricing-header">
+                        <h3>Growth</h3>
+                        <p>Best for busy independent kitchens cutting out aggregators.</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-currency">£</span>
+                        <span class="price-amount">59</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <strong>Unlimited</strong> monthly orders
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Live Order Manager Dashboard
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Loyalty &amp; discount features
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Priority customer support
+                        </li>
+                    </ul>
+                    <a href="#demo" class="btn btn-primary">Start Free Trial</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card fade-up delay-3">
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <p>For growing brands and multiple restaurant locations.</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-currency">£</span>
+                        <span class="price-amount">149</span>
+                        <span class="price-period">/ month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Everything in Growth
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Multi-location management
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Custom web domain (yourdomain.com)
+                        </li>
+                        <li class="pricing-feature-item">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Dedicated Account Manager
+                        </li>
+                    </ul>
+                    <a href="#demo" class="btn btn-secondary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       8.5 FAQs SECTION (Objection Handling)
+       ========================================== -->
+    <section id="faqs" class="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently asked questions</h2>
+                <p class="section-subtitle">Everything you need to know about setting up your branded ordering website.
+                </p>
+            </div>
+
+            <div class="faq-wrapper">
+                <!-- Q1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does the delivery network work?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        When an order lands on your website, our system immediately sends the details to our delivery
+                        partner network. A nearby courier is auto-assigned, accepts the delivery route, and arrives at
+                        your restaurant just as the food finished cooking. It is completely automated and hands-off.
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Who pays the delivery partner drivers?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Your guests pay a standard, local distance-based delivery fee during checkout, just like they do
+                        on third-party aggregators. That fee goes directly to cover the partner dispatch cost. You do
+                        not pay anything out of pocket.
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I have to build the website myself?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No. We do 100% of the build and configuration for you. Send us your logo, menu list, and
+                        delivery boundaries, and we'll handle domain mapping, Stripe links, menu uploads, and SEO
+                        parameters. You'll be taking orders in under 48 hours.
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can Kitchio run alongside third-party apps?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. Kitchio is designed to sit comfortably alongside your existing aggregators. Most of
+                        our partners run Kitchio on their custom domain while slowly migrating high-value local regulars
+                        off third-party platforms to save on high fee commissions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       8.9 THE HIDDEN FEES DECODER
+       ========================================== -->
+    <section id="decoder" class="fade-up">
+        <div class="container">
+            <!-- Header -->
+            <div class="decoder-header">
+                <h2 class="section-title">The True Cost of Delivery</h2>
+                <p class="section-subtitle" style="margin-top: 12px; color: var(--text-muted);">Aggregators take more
+                    than just a delivery fee. Compare their hidden percentages with Kitchio.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="decoder-tabs">
+                <button class="decoder-tab-btn active" data-platform="ubereats">Uber Eats</button>
+                <button class="decoder-tab-btn" data-platform="deliveroo">Deliveroo</button>
+                <button class="decoder-tab-btn" data-platform="justeat">Just Eat</button>
+            </div>
+
+            <!-- Comparison Grid -->
+            <div class="decoder-container">
+                <div class="decoder-grid">
+                    <!-- Column 1: Aggregator -->
+                    <div class="decoder-column aggregator">
+                        <div class="col-header">
+                            <span class="col-title" id="platform-name-text">Uber Eats</span>
+                            <span class="col-badge">Aggregator</span>
+                        </div>
+
+                        <div class="fee-list">
+                            <!-- Row 1 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Base Order Commission</span>
+                                    <span class="fee-sublabel">Taken from your menu price</span>
+                                </div>
+                                <span class="fee-val" id="plat-comm">30%</span>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Customer Service Fee</span>
+                                    <span class="fee-sublabel">Additional charge to diner</span>
+                                </div>
+                                <span class="fee-val" id="plat-serv">10%</span>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Merchant Setup &amp; Tablet Fee</span>
+                                    <span class="fee-sublabel">One-off upfront onboarding charge</span>
+                                </div>
+                                <span class="fee-val" id="plat-setup">£350</span>
+                            </div>
+
+                            <!-- Row 4 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Payment Processing</span>
+                                    <span class="fee-sublabel">Marked up transaction fee</span>
+                                </div>
+                                <span class="fee-val" id="plat-process">3.5% (Markup)</span>
+                            </div>
+
+                            <!-- Row 5 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Payout Hold Time</span>
+                                    <span class="fee-sublabel">How long they hold your cash</span>
+                                </div>
+                                <span class="fee-val" id="plat-payout">14 Days</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Kitchio -->
+                    <div class="decoder-column kitchio">
+                        <div class="col-header">
+                            <span class="col-title">Kitchio Direct</span>
+                            <span class="col-badge">Your Brand</span>
+                        </div>
+
+                        <div class="fee-list">
+                            <!-- Row 1 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Base Order Commission</span>
+                                    <span class="fee-sublabel">Keep 100% of your margins</span>
+                                </div>
+                                <span class="fee-val">0%</span>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Customer Service Fee</span>
+                                    <span class="fee-sublabel">No additional platform markups</span>
+                                </div>
+                                <span class="fee-val">£0</span>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Merchant Setup &amp; Tablet Fee</span>
+                                    <span class="fee-sublabel">Fully configured and designed for you</span>
+                                </div>
+                                <span class="fee-val">£0 Setup</span>
+                            </div>
+
+                            <!-- Row 4 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Payment Processing</span>
+                                    <span class="fee-sublabel">Secure business transaction rate</span>
+                                </div>
+                                <span class="fee-val">2.2% + 30p</span>
+                            </div>
+
+                            <!-- Row 5 -->
+                            <div class="fee-row">
+                                <div class="fee-label-group">
+                                    <span class="fee-label">Payout Hold Time</span>
+                                    <span class="fee-sublabel">Directly to your business bank account</span>
+                                </div>
+                                <span class="fee-val">Instant Payouts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Bar -->
+                    <div class="decoder-summary-bar">
+                        <div>
+                            <span class="summary-label">Based on £1,000 in weekly orders:</span>
+                            <div style="display: flex; gap: 30px; margin-top: 8px;">
+                                <div>
+                                    <span class="fee-sublabel">They take:</span>
+                                    <div class="summary-val" id="aggregator-bill" style="color: var(--red);">£350.00
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="fee-sublabel">Kitchio takes:</span>
+                                    <div class="summary-val" id="kitchio-bill" style="color: var(--green);">£34.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summary-saving-highlight">
+                            You save £<span id="savings-bill">316.00</span> / week
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       9. DEMO / CONTACT FORM SECTION
+       ========================================== -->
+    <section id="demo" class="fade-up">
+        <div class="container demo-container">
+            <!-- Header -->
+            <div class="section-header">
+                <h2 class="section-title">Ready to stop paying their bills?</h2>
+                <p class="section-subtitle">Book a free 20-minute product demo. No commitment, no pitch — we'll simply
+                    show you the ordering dashboard and how much you could save.</p>
+            </div>
+
+            <!-- Demo Form -->
+            <div class="demo-form">
+                <!-- Form State -->
+                <form id="demo-booking-form" novalidate>
+                    <!-- Row 1 -->
+                    <div class="form-row">
+                        <div class="form-group" id="group-firstname">
+                            <label for="firstname">First Name</label>
+                            <input type="text" id="firstname" class="form-control" placeholder="e.g., Marco">
+                            <div class="error-message">First name is required</div>
+                        </div>
+                        <div class="form-group" id="group-lastname">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" id="lastname" class="form-control" placeholder="e.g., Pierre">
+                            <div class="error-message">Last name is required</div>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-row">
+                        <div class="form-group" id="group-email">
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" class="form-control"
+                                placeholder="e.g., marco@mypizzeria.com">
+                            <div class="error-message">Please enter a valid email address</div>
+                        </div>
+                        <div class="form-group" id="group-phone">
+                            <label for="phone">Mobile Phone</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="e.g., +44 7700 900077">
+                            <div class="error-message">Please enter a valid phone number</div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Name -->
+                    <div class="form-group" id="group-restaurant">
+                        <label for="restaurant">Restaurant Name</label>
+                        <input type="text" id="restaurant" class="form-control"
+                            placeholder="e.g., Pierre's Pizza Parlour">
+                        <div class="error-message">Restaurant name is required</div>
+                    </div>
+
+                    <!-- Locations Radio Pills -->
+                    <div class="form-group">
+                        <label>Number of Locations</label>
+                        <div class="locations-group">
+                            <div class="location-option">
+                                <input type="radio" id="loc-1" name="locations" value="1" checked>
+                                <label for="loc-1" class="location-label">1 Location</label>
+                            </div>
+                            <div class="location-option">
+                                <input type="radio" id="loc-2" name="locations" value="2-5">
+                                <label for="loc-2" class="location-label">2–5 Locations</label>
+                            </div>
+                            <div class="location-option">
+                                <input type="radio" id="loc-6" name="locations" value="6+">
+                                <label for="loc-6" class="location-label">6+ Locations</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Textarea Anything Else -->
+                    <div class="form-group">
+                        <label for="notes">Anything else? (Optional)</label>
+                        <textarea id="notes" class="form-control" rows="4"
+                            placeholder="Tell us about your online ordering setup..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-full" style="margin-top: 10px;">Book My Free
+                        Demo</button>
+                </form>
+
+                <!-- Thank You State -->
+                <div class="thank-you-panel" id="thank-you-state">
+                    <span class="thank-you-icon">🍕</span>
+                    <h3>Thank you! We're on it.</h3>
+                    <p>We've received your request. One of our onboarders will reach out to you at the email address
+                        provided within a few hours to book your demo slot.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       11. FOOTER SECTION
+       ========================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Footer Brand Column -->
+                <div class="footer-brand">
+                    <a href="#hero" class="logo-link">
+                        <span class="logo-text">Kitch·<span class="logo-dot-i">ı<span
+                                    class="logo-i-dot"></span></span>o</span>
+                    </a>
+                    <p>Building local restaurants their own branded ordering systems with seamless, commission-free
+                        delivery partner integrations.</p>
+                    <a href="mailto:hello@kitchio.com" class="footer-email">hello@kitchio.com</a>
+                </div>
+
+                <!-- Footer Links Column -->
+                <div class="footer-links-col">
+                    <a href="#features" class="footer-link">Features</a>
+                    <a href="#how-it-works" class="footer-link">How It Works</a>
+                    <a href="#pricing" class="footer-link">Pricing</a>
+                    <a href="#demo" class="footer-link">Book Demo</a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Border Line -->
+            <div class="footer-bottom">
+                <div>&copy; 2026 Kitchio Ltd. All rights reserved. Built for independent kitchens.</div>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#demo" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       12. INTERACTIVE JS SCRIPT
+       ========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ==========================================
+               A. STICKY HEADER & SCROLL EFFECTS
+               ========================================== */
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            /* ==========================================
+               B. MOBILE DRAWER NAVIGATION MENU
+               ========================================== */
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMobileNav() {
+                hamburgerBtn.classList.toggle('active');
+                mobileDrawer.classList.toggle('active');
+                document.body.classList.toggle('overflow-hidden');
+            }
+
+            hamburgerBtn.addEventListener('click', toggleMobileNav);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileDrawer.classList.contains('active')) {
+                        toggleMobileNav();
+                    }
+                });
+            });
+
+            /* ==========================================
+               C. INTERSECTION OBSERVER FOR FADE-UP
+               ========================================== */
+            const fadeUpElements = document.querySelectorAll('.fade-up');
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const fadeUpObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeUpElements.forEach(element => {
+                fadeUpObserver.observe(element);
+            });
+
+            /* ==========================================
+               C.5 ACCORDION FAQs LISTENER
+               ========================================== */
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Toggle active class on clicked item
+                    item.classList.toggle('active');
+
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            /* ==========================================
+               F. CONTACT / DEMO FORM VALIDATION & STATES
+               ========================================== */
+            const form = document.getElementById('demo-booking-form');
+            const thankYouState = document.getElementById('thank-you-state');
+
+            const fields = [
+                { id: 'firstname', validator: val => val.trim().length > 0, group: 'group-firstname' },
+                { id: 'lastname', validator: val => val.trim().length > 0, group: 'group-lastname' },
+                { id: 'email', validator: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), group: 'group-email' },
+                { id: 'phone', validator: val => /^[+]?[0-9\s-]{7,15}$/.test(val.trim()), group: 'group-phone' },
+                { id: 'restaurant', validator: val => val.trim().length > 0, group: 'group-restaurant' }
+            ];
+
+            // Attach inline blur validation
+            fields.forEach(field => {
+                const input = document.getElementById(field.id);
+                input.addEventListener('blur', () => {
+                    validateField(field);
+                });
+                input.addEventListener('input', () => {
+                    const group = document.getElementById(field.group);
+                    group.classList.remove('has-error');
+                });
+            });
+
+            function validateField(field) {
+                const input = document.getElementById(field.id);
+                const isValid = field.validator(input.value);
+                const group = document.getElementById(field.group);
+
+                if (!isValid) {
+                    group.classList.add('has-error');
+                    return false;
+                } else {
+                    group.classList.remove('has-error');
+                    return true;
+                }
+            }
+
+            /* ==========================================
+               G. THE HIDDEN FEES DECODER INTERACTION
+               ========================================== */
+            const decoderTabs = document.querySelectorAll('.decoder-tab-btn');
+            const platformNameText = document.getElementById('platform-name-text');
+            const platComm = document.getElementById('plat-comm');
+            const platServ = document.getElementById('plat-serv');
+            const platSetup = document.getElementById('plat-setup');
+            const platProcess = document.getElementById('plat-process');
+            const platPayout = document.getElementById('plat-payout');
+
+            const aggregatorBill = document.getElementById('aggregator-bill');
+            const kitchioBill = document.getElementById('kitchio-bill');
+            const savingsBill = document.getElementById('savings-bill');
+
+            const platformData = {
+                ubereats: {
+                    name: "Uber Eats",
+                    commission: "30%",
+                    service: "10%",
+                    setup: "£350",
+                    processing: "3.5% (Markup)",
+                    payout: "14 Days",
+                    totalAggregator: 350.00,
+                    totalKitchio: 34.00,
+                },
+                deliveroo: {
+                    name: "Deliveroo",
+                    commission: "35%",
+                    service: "12%",
+                    setup: "£299",
+                    processing: "3.0% (Markup)",
+                    payout: "7-10 Days",
+                    totalAggregator: 380.00,
+                    totalKitchio: 34.00,
+                },
+                justeat: {
+                    name: "Just Eat",
+                    commission: "36%",
+                    service: "14%",
+                    setup: "£399",
+                    processing: "2.9% + 25p",
+                    payout: "Weekly",
+                    totalAggregator: 399.00,
+                    totalKitchio: 34.00,
+                }
+            };
+
+            decoderTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active tab class
+                    decoderTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Get platform key
+                    const platformKey = tab.getAttribute('data-platform');
+                    const data = platformData[platformKey];
+
+                    if (data) {
+                        // Update DOM elements with smooth transitions
+                        platformNameText.innerText = data.name;
+                        platComm.innerText = data.commission;
+                        platServ.innerText = data.service;
+                        platSetup.innerText = data.setup;
+                        platProcess.innerText = data.processing;
+                        platPayout.innerText = data.payout;
+
+                        aggregatorBill.innerText = `£${data.totalAggregator.toFixed(2)}`;
+                        kitchioBill.innerText = `£${data.totalKitchio.toFixed(2)}`;
+                        savingsBill.innerText = `£${(data.totalAggregator - data.totalKitchio).toFixed(2)}`;
+                    }
+                });
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                let isFormValid = true;
+                fields.forEach(field => {
+                    const isFieldValid = validateField(field);
+                    if (!isFieldValid) {
+                        isFormValid = false;
+                    }
+                });
+
+                if (isFormValid) {
+                    // Extract form values
+                    const firstname = document.getElementById('firstname').value.trim();
+                    const lastname = document.getElementById('lastname').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const restaurant = document.getElementById('restaurant').value.trim();
+                    const locationsEl = document.querySelector('input[name="locations"]:checked');
+                    const locations = locationsEl ? locationsEl.value : '1';
+                    const notes = document.getElementById('notes').value.trim();
+
+                    // Secure Form Submission (Direct Webhook for local testing, Serverless API for production)
+                    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.');
+                    
+                    if (isLocal) {
+                        const webhookUrl = 'https://discord.com/api/webhooks/1507179122193862826/7U2XNOEhQiYLA7eG6LKvfgF9QG-KwXskGv5Ux2-3WHzb4B33BDKAS8ktT5XR9LY0fYM9';
+                        const payload = {
+                            embeds: [{
+                                title: "🚀 [Local Test] New Kitchio Demo Request!",
+                                color: 14117702, // #D76B46 brand terracotta
+                                fields: [
+                                    { name: "👤 Contact Name", value: `${firstname} ${lastname}`, inline: true },
+                                    { name: "🏢 Restaurant", value: restaurant, inline: true },
+                                    { name: "📍 Locations", value: `${locations} location(s)`, inline: true },
+                                    { name: "📧 Email", value: email, inline: true },
+                                    { name: "📱 Phone", value: phone, inline: true },
+                                    { name: "📝 Notes", value: notes || "*None provided*" }
+                                ],
+                                timestamp: new Date().toISOString(),
+                                footer: {
+                                    text: "Kitchio Local Test System"
+                                }
+                            }]
+                        };
+
+                        fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        }).catch(err => console.error('Error sending local test to Discord:', err));
+                    } else {
+                        // Production: Send securely via Vercel Serverless Function to keep webhook hidden
+                        fetch('/api/submit', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                firstname,
+                                lastname,
+                                email,
+                                phone,
+                                restaurant,
+                                locations,
+                                notes
+                            })
+                        }).catch(err => console.error('Error submitting secure lead:', err));
+                    }
+
+                    // Process Form Submission (Visual Simulated Success)
+                    form.style.display = 'none';
+                    thankYouState.style.display = 'block';
+
+                    // Optional scroll to center success state
+                    thankYouState.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
