@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Kitchio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Privacy Policy for Kitchio. Learn how we handle your restaurant merchant data and diner information securely under GDPR guidelines.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0C0A09;
+            --bg-secondary: #110F0E;
+            --card-bg: #151413;
+            --card-hover: #1D1C1B;
+            --accent: #D76B46;
+            --accent-hover: #E37E5A;
+            --text: #F6F4F2;
+            --text-muted: #948F8B;
+            --border: rgba(255, 255, 255, 0.03);
+            --container-width: 800px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        header {
+            padding: 24px 0;
+            background: rgba(12, 10, 9, 0.85);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: #FFF;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-dot-i {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-i-dot {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link:hover {
+            color: #FFF;
+        }
+
+        .content-container {
+            max-width: var(--container-width);
+            margin: 80px auto;
+            padding: 0 24px;
+        }
+
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: #FFF;
+            margin-bottom: 12px;
+        }
+
+        .last-updated {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .doc-section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #FFF;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        strong {
+            color: #FFF;
+            font-weight: 600;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            color: var(--text-muted);
+            font-size: 15px;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 40px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer-link:hover {
+            color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <span class="logo-text">Kitch·<span class="logo-dot-i">ı<span class="logo-i-dot"></span></span>o</span>
+            </a>
+            <a href="index.html" class="back-link">Back to Homepage</a>
+        </div>
+    </header>
+
+    <main class="content-container">
+        <h1>Privacy Policy</h1>
+        <span class="last-updated">Last Updated: May 23, 2026</span>
+
+        <div class="doc-section">
+            <p>Welcome to Kitchio (kitcho.co.uk). Kitchio is a branded ordering platform for independent takeaways, restaurants, and food operators in the United Kingdom. We respect your privacy and are committed to protecting the personal data of both our restaurant merchants ("Merchants") and their end customers ("Diners").</p>
+            <p>This Privacy Policy explains how we collect, use, and share personal data when you use the Kitchio software, visit our website, or interact with an online ordering store built on our system.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>1. Diner Data Ownership: The Kitchio Promise</h2>
+            <p>Unlike third-party aggregator apps (e.g., Uber Eats, Deliveroo, or Just Eat) that capture and hide customer databases from the kitchens, **Kitchio maintains a strict direct-merchant ownership model**.</p>
+            <p>Any diner personal data collected on a Merchant's branded ordering page (such as names, emails, addresses, and order history) is owned exclusively by that Merchant. Kitchio acts solely as a data processor for these transactions. We will never sell, lease, or use your Diner lists to cross-promote competing food establishments or market direct aggregator services.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>2. Information We Collect</h2>
+            <p>We collect personal data through different channels depending on your interaction with our platform:</p>
+            
+            <strong>A. Merchant Information:</strong>
+            <p>When a restaurant registers for Kitchio, we collect contact details (owner name, business email, telephone, location addresses) and secure payment metadata (linked via Stripe) to route payouts.</p>
+            
+            <strong>B. Diner Information:</strong>
+            <p>When placing an order on a Kitchio-powered branded site, we collect data necessary for transaction completion and delivery fulfillment:</p>
+            <ul>
+                <li><strong>Contact details:</strong> Full name, telephone number, and email address.</li>
+                <li><strong>Delivery details:</strong> Physical street address, post code, and optional delivery notes.</li>
+                <li><strong>Transaction details:</strong> Food items purchased, total charges, and secure transaction reference tags. (Payment details are routed directly to Stripe; Kitchio never logs full card numbers).</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>3. How We Use Collected Data</h2>
+            <p>We process personal information under standard GDPR lawful bases to fulfill our business contracts and service requests:</p>
+            <ul>
+                <li><strong>Fulfillment logistics:</strong> Providing address details to our on-demand courier networks (e.g., Stuart, Uber Direct) to ensure order transit.</li>
+                <li><strong>Communication updates:</strong> Sending automated order receipt emails and white-labeled SMS alerts containing delivery rider tracker maps.</li>
+                <li><strong>Direct payments:</strong> Routing Stripe payment processes securely to the Merchant's merchant bank account.</li>
+                <li><strong>Platform operations:</strong> Monitoring system health, preventing duplicate accounts, and managing automated re-engagement coupons on behalf of the Merchant.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>4. Information Sharing & Third Parties</h2>
+            <p>We only share necessary personal data with specific services to perform core operational actions:</p>
+            <ul>
+                <li><strong>Integrated Couriers:</strong> Delivery details are shared dynamically with third-party logistics firms executing order dispatch.</li>
+                <li><strong>Payment Processors:</strong> We partner with Stripe to handle secure online transactions. Card processing details comply with PCI-DSS guidelines.</li>
+                <li><strong>Logistics APIs:</strong> Customer addresses are validated via global geolocation tools (such as Google Maps API) to compute accurate delivery ranges.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>5. Data Security</h2>
+            <p>Kitchio uses robust technical and administrative structures to prevent unauthorized access or modification. All ordering pages implement SSL certificates, secure endpoint verification, and tokenized API processing channels. However, no digital transmission is entirely secure, and we prompt Merchants to keep dashboard passwords strictly confidential.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>6. Your GDPR Rights</h2>
+            <p>As a UK resident, you retain standard statutory data rights under GDPR guidelines, including rights of access, correction, transfer, and deletion of personal files. Diners wishing to exercise these rights should contact the restaurant Merchant directly, as they manage the primary guest database. Merchants and other system operators can contact our privacy officer at <strong>onboard@kitcho.co.uk</strong>.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div>&copy; 2026 Kitchio Ltd. All rights reserved.</div>
+            <div style="display: flex; gap: 20px;">
+                <a href="terms.html" class="footer-link">Terms of Service</a>
+                <a href="index.html" class="footer-link">Home</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

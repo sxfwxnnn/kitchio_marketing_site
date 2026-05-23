@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Kitchio Live Demo...</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    
+    <!-- Meta refresh redirect -->
+    <meta http-equiv="refresh" content="1; url=https://order.kitchio.co.uk/">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0C0A09;
+            --card-bg: #151413;
+            --accent: #D76B46;
+            --accent-hover: #E37E5A;
+            --text: #F6F4F2;
+            --text-muted: #948F8B;
+            --border: rgba(255, 255, 255, 0.03);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Soft background glow */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(215, 107, 70, 0.08) 0%, rgba(215, 107, 70, 0.01) 60%, rgba(12, 10, 9, 0) 80%);
+            filter: blur(40px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .redirect-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            max-width: 460px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: cardFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            letter-spacing: -0.5px;
+            color: #FFF;
+            margin-bottom: 32px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-dot-i {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-i-dot {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .loader-ring {
+            width: 48px;
+            height: 48px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-top: 2.5px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 24px;
+            box-shadow: 0 0 10px rgba(215, 107, 70, 0.15);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFF;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .btn-manual {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background-color: transparent;
+            color: #FFF;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .btn-manual:hover {
+            border-color: var(--accent);
+            background-color: rgba(215, 107, 70, 0.06);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow"></div>
+
+    <div class="redirect-card">
+        <span class="logo-text">Kitch·<span class="logo-dot-i">ı<span class="logo-i-dot"></span></span>o</span>
+        
+        <div class="loader-ring"></div>
+        
+        <h1>Redirecting to Live Demo</h1>
+        <p>Connecting to order.kitchio.co.uk to launch our food ordering demo simulator...</p>
+        
+        <a href="https://order.kitchio.co.uk/" class="btn-manual">Click here if not redirected</a>
+    </div>
+
+    <!-- JavaScript Fallback Redirect -->
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://order.kitchio.co.uk/";
+        }, 800);
+    </script>
+
+</body>
+
+</html>

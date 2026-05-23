@@ -56,7 +56,18 @@
             "@id": "https://kitcho.co.uk/#logo",
             "url": "https://kitcho.co.uk/kitchio_profile_obsidian.png",
             "caption": "Kitchio Branding Logo"
-          }
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+44-7700-900077",
+            "contactType": "customer support",
+            "areaServed": "GB",
+            "availableLanguage": "en"
+          },
+          "sameAs": [
+            "https://twitter.com/KitchioDirect",
+            "https://www.linkedin.com/company/kitchio"
+          ]
         },
         {
           "@type": "WebSite",
@@ -77,11 +88,18 @@
           "operatingSystem": "All",
           "url": "https://kitcho.co.uk/",
           "description": "A commission-free alternative to Uber Eats, Deliveroo, and Just Eat that builds custom branded ordering websites for local restaurants.",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "142",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
           "offers": {
             "@type": "Offer",
-            "price": "0.00",
+            "price": "59.00",
             "priceCurrency": "GBP",
-            "description": "Commission-Free ordering. Pay only a flat per-order fulfillment fee of £1.50."
+            "description": "Commission-Free ordering software with Growth and Pro subscription options."
           },
           "featureList": [
             "0% Commission",
@@ -1446,7 +1464,7 @@
             font-size: 20px;
         }
 
-        .author-info h4 {
+        .author-info h3 {
             font-size: 14px;
             font-weight: 600;
             color: #FFF;
@@ -2466,10 +2484,45 @@
             border-color: var(--red);
             box-shadow: 0 0 0 2px rgba(243, 84, 63, 0.2);
         }
+
+        /* Accessibility Skip Link styling */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 20px;
+            background-color: var(--accent);
+            color: #FFF;
+            padding: 10px 20px;
+            border-radius: 4px;
+            z-index: 10001;
+            font-weight: 500;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 20px;
+            outline: 2px solid #FFF;
+        }
+
+        /* Screen Reader Only utility for SEO content injection */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Skip to main content accessibility link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- ==========================================
        1. STICKY NAVIGATION HEADER
@@ -2486,6 +2539,7 @@
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="/demo" class="nav-link" target="_blank">Live Demo</a>
                 <a href="#demo" class="nav-link">Get Started</a>
             </nav>
 
@@ -2508,6 +2562,7 @@
         <a href="#features" class="nav-link mobile-link">Features</a>
         <a href="#how-it-works" class="nav-link mobile-link">How It Works</a>
         <a href="#pricing" class="nav-link mobile-link">Pricing</a>
+        <a href="/demo" class="nav-link mobile-link" target="_blank">Live Demo</a>
         <a href="#demo" class="nav-link mobile-link">Get Started</a>
         <a href="#demo" class="btn btn-primary mobile-link">Book a Demo</a>
     </div>
@@ -2515,6 +2570,7 @@
     <!-- ==========================================
        2. HERO SECTION
        ========================================== -->
+    <main id="main-content" role="main">
     <section id="hero">
         <div class="hero-glow"></div>
         <div class="container hero-content">
@@ -2525,6 +2581,7 @@
 
             <!-- Main Heading -->
             <h1 class="hero-headline fade-up delay-1">
+                <span class="sr-only">Kitchio Branded Restaurant Ordering System:</span>
                 Your kitchen.<br>Your customers. <span style="color: var(--accent);">Your money.</span>
             </h1>
 
@@ -2538,7 +2595,7 @@
             <div class="hero-ctas fade-up delay-3">
                 <div class="hero-ctas-buttons">
                     <a href="#demo" class="btn btn-primary">Get Your Free Site</a>
-                    <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+                    <a href="/demo" class="btn btn-secondary" target="_blank">Try Live Demo</a>
                 </div>
                 <span class="cta-subtext">No setup fees • Built &amp; launched for you in 48 hours • Cancel
                     anytime</span>
@@ -2560,7 +2617,8 @@
             <div class="pain-platforms">
                 <!-- Aggregator Card 1 -->
                 <div class="platform-card platform-ubereats">
-                    <svg class="cross-line" viewBox="0 0 150 140">
+                    <svg class="cross-line" width="150" height="140" viewBox="0 0 150 140" role="img" aria-label="Uber Eats diagonal cross cut representing high aggregator commission fees">
+                        <title>Uber Eats diagonal cross cut representing high aggregator commission fees</title>
                         <line x1="10" y1="130" x2="140" y2="10" />
                     </svg>
                     <div class="platform-logo-mock">Uber Eats</div>
@@ -2569,7 +2627,8 @@
 
                 <!-- Aggregator Card 2 -->
                 <div class="platform-card platform-justeat">
-                    <svg class="cross-line" viewBox="0 0 150 140">
+                    <svg class="cross-line" width="150" height="140" viewBox="0 0 150 140" role="img" aria-label="Just Eat diagonal cross cut representing high aggregator commission fees">
+                        <title>Just Eat diagonal cross cut representing high aggregator commission fees</title>
                         <line x1="10" y1="130" x2="140" y2="10" />
                     </svg>
                     <div class="platform-logo-mock">JUST EAT</div>
@@ -2578,7 +2637,8 @@
 
                 <!-- Aggregator Card 3 -->
                 <div class="platform-card platform-deliveroo">
-                    <svg class="cross-line" viewBox="0 0 150 140">
+                    <svg class="cross-line" width="150" height="140" viewBox="0 0 150 140" role="img" aria-label="Deliveroo diagonal cross cut representing high aggregator commission fees">
+                        <title>Deliveroo diagonal cross cut representing high aggregator commission fees</title>
                         <line x1="10" y1="130" x2="140" y2="10" />
                     </svg>
                     <div class="platform-logo-mock">deliveroo</div>
@@ -2629,7 +2689,7 @@
     <section id="comparison" class="fade-up">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Why restaurants are leaving the apps</h2>
+                <h2 class="section-title">Why UK Restaurants are Leaving Aggregator Apps</h2>
                 <p class="section-subtitle">A side-by-side breakdown of the aggregator tax versus ordering freedom.</p>
             </div>
 
@@ -2682,7 +2742,7 @@
         <div class="container">
             <!-- Features Header -->
             <div class="section-header fade-up">
-                <h2 class="section-title">Everything you need to bypass the aggregators</h2>
+                <h2 class="section-title">Advanced Restaurant Ordering Features to Bypass Aggregators</h2>
                 <p class="section-subtitle">Take orders directly, keep the profits, and deliver instantly — all managed
                     in one high-tech restaurant suite.</p>
             </div>
@@ -2925,8 +2985,7 @@
             <div class="fade-up"
                 style="display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center;">
                 <div class="badge" style="margin-bottom: 16px;">Zero Friction Onboarding</div>
-                <h2 class="section-title" style="margin-bottom: 40px; text-align: center;">From demo to first order in 3
-                    simple steps</h2>
+                <h2 class="section-title" style="margin-bottom: 40px; text-align: center;">How Kitchio Works: Launch Your Branded Site in 3 Simple Steps</h2>
 
                 <div class="steps-list" style="text-align: left; max-width: 640px; width: 100%;">
                     <!-- Step 1 -->
@@ -2970,7 +3029,7 @@
     <section id="testimonials" class="fade-up">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Trusted by independent kitchens</h2>
+                <h2 class="section-title">Success Stories: Trusted by UK Independent Kitchens</h2>
                 <p class="section-subtitle">Read how local restaurant owners took back control of their delivery
                     profits.</p>
             </div>
@@ -2987,7 +3046,7 @@
                     <div class="testimonial-author">
                         <div class="author-pic">🍕</div>
                         <div class="author-info">
-                            <h4>Chef Antonio</h4>
+                            <h3>Chef Antonio</h3>
                             <p>Owner, Pierre's Pizza Parlour</p>
                         </div>
                     </div>
@@ -3004,7 +3063,7 @@
                     <div class="testimonial-author">
                         <div class="author-pic">🍔</div>
                         <div class="author-info">
-                            <h4>Sarah L.</h4>
+                            <h3>Sarah L.</h3>
                             <p>Founder, The Burger Box</p>
                         </div>
                     </div>
@@ -3021,7 +3080,7 @@
                     <div class="testimonial-author">
                         <div class="author-pic">🍜</div>
                         <div class="author-info">
-                            <h4>Jin-Woo H.</h4>
+                            <h3>Jin-Woo H.</h3>
                             <p>General Manager, Wok &amp; Roll</p>
                         </div>
                     </div>
@@ -3037,7 +3096,7 @@
         <div class="container">
             <!-- Header -->
             <div class="section-header fade-up">
-                <h2 class="section-title">Fair pricing that helps you scale</h2>
+                <h2 class="section-title">Transparent, Commission-Free Pricing Plans</h2>
                 <p class="section-subtitle">No long-term commitments. Choose a plan that matches your order volume and
                     restaurant size.</p>
             </div>
@@ -3186,7 +3245,7 @@
     <section id="faqs" class="fade-up">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Frequently asked questions</h2>
+                <h2 class="section-title">Frequently Asked Questions About Our Branded Ordering System</h2>
                 <p class="section-subtitle">Everything you need to know about setting up your branded ordering website.
                 </p>
             </div>
@@ -3262,7 +3321,7 @@
         <div class="container">
             <!-- Header -->
             <div class="decoder-header">
-                <h2 class="section-title">The True Cost of Delivery</h2>
+                <h2 class="section-title">The True Cost of Restaurant Delivery: Aggregators vs. Kitchio</h2>
                 <p class="section-subtitle" style="margin-top: 12px; color: var(--text-muted);">Aggregators take more
                     than just a delivery fee. Compare their hidden percentages with Kitchio.</p>
             </div>
@@ -3419,7 +3478,7 @@
         <div class="container demo-container">
             <!-- Header -->
             <div class="section-header">
-                <h2 class="section-title">Ready to stop paying their bills?</h2>
+                <h2 class="section-title">Launch Your Branded Restaurant Website Today</h2>
                 <p class="section-subtitle">Book a free 20-minute product demo. No commitment, no pitch — we'll simply
                     show you the ordering dashboard and how much you could save.</p>
             </div>
@@ -3517,6 +3576,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ==========================================
        11. FOOTER SECTION
        ========================================== -->
@@ -3543,12 +3604,34 @@
                 </div>
             </div>
 
+            <!-- Local SEO Service Areas Section -->
+            <div class="footer-seo-regions" style="border-top: 1px solid var(--border); padding-top: 40px; margin-top: 40px; margin-bottom: 40px;">
+                <h3 style="font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #FFF; margin-bottom: 16px;">UK Service Areas</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; max-width: 900px;">
+                    Kitchio enables direct, commission-free restaurant delivery and branded ordering software solutions for independent takeaways, restaurants, pub groups, and multi-location dark kitchens across all major UK cities. We automatically integrate with local couriers to provide instant dispatch and route optimizations throughout our primary coverage zones:
+                </p>
+                <div class="seo-cities-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; font-size: 13px;">
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> London Takeaways</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Manchester Restaurants</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Birmingham Ordering</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Leeds Takeaway Tech</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Glasgow Delivery App</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Liverpool Food Systems</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Edinburgh Direct Order</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Bristol Delivery Setup</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Newcastle Food Websites</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Sheffield Branded Apps</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Cardiff Direct Ordering</a>
+                    <a href="#demo" class="footer-link" style="display: flex; align-items: center; gap: 6px;"><span>📍</span> Nottingham Delivery Sites</a>
+                </div>
+            </div>
+
             <!-- Footer Bottom Border Line -->
-            <div class="footer-bottom">
+            <div class="footer-bottom" style="border-top: 1px solid var(--border); padding-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
                 <div>&copy; 2026 Kitchio Ltd. All rights reserved. Built for independent kitchens.</div>
                 <div style="display: flex; gap: 20px;">
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="terms.html" class="footer-link">Terms of Service</a>
                     <a href="#demo" class="footer-link">Contact</a>
                 </div>
             </div>

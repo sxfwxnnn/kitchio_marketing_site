@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Kitchio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Terms of Service for Kitchio. Read about our 0% commission restaurant ordering websites, Stripe processing integrations, and automated logistics networks.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0C0A09;
+            --bg-secondary: #110F0E;
+            --card-bg: #151413;
+            --card-hover: #1D1C1B;
+            --accent: #D76B46;
+            --accent-hover: #E37E5A;
+            --text: #F6F4F2;
+            --text-muted: #948F8B;
+            --border: rgba(255, 255, 255, 0.03);
+            --container-width: 800px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        header {
+            padding: 24px 0;
+            background: rgba(12, 10, 9, 0.85);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: #FFF;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .logo-dot-i {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-i-dot {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link:hover {
+            color: #FFF;
+        }
+
+        .content-container {
+            max-width: var(--container-width);
+            margin: 80px auto;
+            padding: 0 24px;
+        }
+
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: #FFF;
+            margin-bottom: 12px;
+        }
+
+        .last-updated {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .doc-section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #FFF;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        strong {
+            color: #FFF;
+            font-weight: 600;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            color: var(--text-muted);
+            font-size: 15px;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 40px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer-link:hover {
+            color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <span class="logo-text">Kitch·<span class="logo-dot-i">ı<span class="logo-i-dot"></span></span>o</span>
+            </a>
+            <a href="index.html" class="back-link">Back to Homepage</a>
+        </div>
+    </header>
+
+    <main class="content-container">
+        <h1>Terms of Service</h1>
+        <span class="last-updated">Effective Date: May 23, 2026</span>
+
+        <div class="doc-section">
+            <p>Welcome to Kitchio (kitcho.co.uk). By accessing our website, booking a free product demo, or utilizing the Kitchio branded restaurant online ordering software, systems, and related merchant APIs, you agree to comply with and be bound by these Terms of Service. Please read them carefully.</p>
+            <p>These terms govern the business relationship between Kitchio Ltd. ("Kitchio", "we", "us") and the restaurant merchant operator ("Merchant", "you").</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>1. Platform Scope & Services Provided</h2>
+            <p>Kitchio provides customizable direct-ordering software applications, hosted web pages, QR code ordering generators, digital loyalty tools, and integrations with third-party payment and courier logistics networks. Kitchio assists in configuring, uploading, and publishing the Merchant's custom website, typically deploying the direct online ordering store in under 48 hours.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>2. The 0% Commission Model</h2>
+            <p>Kitchio operates on a **0% transaction commission model** on food and beverage ordering volume. We do not extract percentage revenue commissions from your direct customer sales. Payment handling transaction costs are governed exclusively by Stripe's direct processing guidelines (Standard UK card transaction rates apply: e.g., 2.2% + 30p).</p>
+            <p>Merchant payouts route directly to your designated business bank account via your independent Stripe dashboard. Kitchio does not hold, delay, or manage your restaurant sales revenues.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>3. Direct Merchant Data Ownership</h2>
+            <p>Merchants maintain 100% legal ownership of the customer files (including Diner email addresses, phone contacts, names, and purchase logs) captured through your branded ordering website. Kitchio acts solely as a technical data processor. We will never use your custom diner records to market third-party platforms or competitor restaurant offers.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>4. Automated Logistics & Courier Fulfillment</h2>
+            <p>Kitchio integrates with on-demand logistics networks (e.g., Stuart, Uber Direct) to coordinate delivery couriers for online orders.
+            - Delivery fees are computed dynamically using distance-based algorithms during checkout. These fees are funded directly by the Diner during payment.
+            - Kitchio coordinates logistics dispatch automatically upon order validation.
+            - Kitchio is a software provider and does not directly employ the couriers. We are not liable for delayed, incomplete, or damaged order transit caused by third-party delivery dispatch partners.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>5. Onboarding & Menu Configuration</h2>
+            <p>You agree to provide accurate menu files, pricing sheets, images, and geographic delivery zone boundaries during onboarding. While Kitchio handles initial configuration and configuration setups, the Merchant remains fully responsible for:
+            - Verifying allergy alerts, ingredient descriptions, and menu price updates.
+            - Ensuring compliance with local food safety and commercial trading rules.
+            - Fulfilling accepted orders in a timely and professional manner.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>6. Subscription Billing & Cancellations</h2>
+            <p>Kitchio subscription fees are billed monthly according to your selected plan (e.g., Growth, Pro). Payments are handled via recurring credit card processing.
+            - **No Setup Fees:** We build, upload, and deploy your site with £0 upfront charges.
+            - **No Long-Term Commitments:** You may terminate your subscription plan at any time without exit penalties. Cancellation requests take effect at the end of the current monthly billing period.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>7. Contact Information</h2>
+            <p>For support, domain configurations, payment mapping, or immediate menu adjustments, please contact our onboarding team at <strong>onboard@kitcho.co.uk</strong>.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div>&copy; 2026 Kitchio Ltd. All rights reserved.</div>
+            <div style="display: flex; gap: 20px;">
+                <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                <a href="index.html" class="footer-link">Home</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
