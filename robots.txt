@@ -3,7 +3,7 @@ Allow: /
 Disallow: /api/
 
 # Host
-Host: https://kitcho.co.uk/
+Host: https://kitchio.co.uk/
 
 # Sitemap
-Sitemap: https://kitcho.co.uk/sitemap.xml
+Sitemap: https://kitchio.co.uk/sitemap.xml
