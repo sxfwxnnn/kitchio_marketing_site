@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://kitchiodirect.com/
+
+# Sitemap
+Sitemap: https://kitchiodirect.com/sitemap.xml

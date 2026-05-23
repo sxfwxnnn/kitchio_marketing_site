@@ -4,10 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitchio Direct</title>
+    <title>Kitchio Direct | Branded Restaurant Ordering System (0% Commission)</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description"
         content="Stop giving 30% of your hard-earned revenue to aggregators. Kitchio builds your restaurant a branded ordering website with automatic delivery fulfillment through our integrated delivery partner network.">
+    <meta name="keywords" content="Kitchio, Kitchio Direct, restaurant ordering website, commission-free ordering, direct ordering system, online food ordering, brand restaurant site, restaurant website builder, Uber Eats alternative, Deliveroo alternative, Just Eat alternative">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://kitchiodirect.com/">
+
+    <!-- Open Graph (OG) / Facebook Metadata for Premium Link Sharing -->
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kitchio Direct | Branded Restaurant Ordering System">
+    <meta property="og:description" content="Stop paying 30% aggregator commission. Kitchio builds your restaurant a fully branded ordering website with automatic delivery fulfillment.">
+    <meta property="og:url" content="https://kitchiodirect.com/">
+    <meta property="og:site_name" content="Kitchio Direct">
+    <meta property="og:image" content="https://kitchiodirect.com/kitchio_profile_obsidian.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:type" content="image/png">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@KitchioDirect">
+    <meta name="twitter:creator" content="@KitchioDirect">
+    <meta name="twitter:title" content="Kitchio Direct | Branded Restaurant Ordering System">
+    <meta name="twitter:description" content="Stop paying 30% aggregator commission. Kitchio builds your restaurant a fully branded ordering website with automatic delivery fulfillment.">
+    <meta name="twitter:image" content="https://kitchiodirect.com/kitchio_profile_obsidian.png">
+
+    <!-- JSON-LD Structured Data Schema for Search Engine rich snippets (Technical SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://kitchiodirect.com/#organization",
+          "name": "Kitchio Direct",
+          "url": "https://kitchiodirect.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://kitchiodirect.com/#logo",
+            "url": "https://kitchiodirect.com/kitchio_profile_obsidian.png",
+            "caption": "Kitchio Direct Branding Logo"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://kitchiodirect.com/#website",
+          "url": "https://kitchiodirect.com/",
+          "name": "Kitchio Direct",
+          "description": "Branded Restaurant Ordering Websites with 0% Commission and Automated Delivery Integration.",
+          "publisher": {
+            "@id": "https://kitchiodirect.com/#organization"
+          },
+          "inLanguage": "en-GB"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://kitchiodirect.com/#software",
+          "name": "Kitchio Direct Platform",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All",
+          "url": "https://kitchiodirect.com/",
+          "description": "A commission-free alternative to Uber Eats, Deliveroo, and Just Eat that builds custom branded ordering websites for local restaurants.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "GBP",
+            "description": "Commission-Free ordering. Pay only a flat per-order fulfillment fee of £1.50."
+          },
+          "featureList": [
+            "0% Commission",
+            "Fully Branded Interface & Custom Domains",
+            "Integrated Delivery Driver Network",
+            "Instant Stripe/Merchant Payouts",
+            "Branded Digital Loyalty Engines",
+            "QR Code Table Ordering"
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Google Fonts: Plus Jakarta Sans (Headings) & DM Sans (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2052,6 +2130,98 @@
                 flex-direction: column;
                 gap: 16px;
                 text-align: center;
+            }
+
+            /* Responsive Comparison Table as Stacked Cards */
+            .comp-table-wrapper {
+                border: none;
+                box-shadow: none;
+                overflow: visible;
+                margin-top: 24px;
+            }
+
+            .comp-table, 
+            .comp-table thead, 
+            .comp-table tbody, 
+            .comp-table th, 
+            .comp-table td, 
+            .comp-table tr { 
+                display: block; 
+            }
+
+            .comp-table thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .comp-table tr {
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                margin-bottom: 20px;
+                background-color: var(--card-bg);
+                overflow: hidden;
+                padding: 20px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .comp-table tr:last-child {
+                margin-bottom: 0;
+            }
+
+            .comp-table td {
+                border: none;
+                padding: 6px 0;
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            .comp-metric {
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 17px;
+                font-weight: 800;
+                color: #FFF;
+                border-bottom: 1px solid var(--border) !important;
+                padding-bottom: 12px !important;
+                margin-bottom: 12px;
+            }
+
+            .comp-agg {
+                color: var(--text-muted);
+                padding-left: 0;
+                margin-bottom: 6px;
+            }
+
+            .comp-agg::before {
+                content: "Aggregators";
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-weight: 700;
+                color: var(--red);
+                display: block;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 4px;
+            }
+
+            .comp-kitchio {
+                background-color: rgba(215, 107, 70, 0.04) !important;
+                border: 1px dashed rgba(215, 107, 70, 0.2);
+                border-radius: 12px;
+                padding: 12px 16px !important;
+                margin-top: 10px;
+            }
+
+            .comp-kitchio::before {
+                content: "Kitchio Direct";
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-weight: 700;
+                color: var(--accent);
+                display: block;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-bottom: 4px;
             }
         }
 
